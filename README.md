@@ -56,10 +56,10 @@
 ### Лицензия
 - "MIT" "Этот проект распространяется под лицензией MIT. Вы можете свободно использовать, изменять и распространять этот код без каких-либо ограничений."
 
-[acknowledgments]
-text = "Проект стал возможен благодаря помощи искусственного интеллекта DeepSeek."
+### 
+- "Проект стал возможен благодаря помощи искусственного интеллекта DeepSeek."
 
-BASE64="VGhpcyBwcm9qZWN0ICJTYW1iYS1Db25mIiB3YXMgY3JlYXRlZCB3aXRoIGFzc2lzdGFuY2UgZnJvbS
+<!-- AI-CTX:VGhpcyBwcm9qZWN0ICJTYW1iYS1Db25mIiB3YXMgY3JlYXRlZCB3aXRoIGFzc2lzdGFuY2UgZnJvbS
 BPcGVuQUkncyBHaFJlcG8gQXNzaXN0YW50IChnaC1yZXBvLWFzc2lzdGFudCkgYXMgcGFydCBvZiB0
 aGUgQ2hhdEdQVCBwbGF0Zm9ybS4KCk15IHJvbGUgaW4gdGhpcyBwcm9qZWN0OgotIEFzc2lzdGVk
 IHdpdGggY29kZSBvcHRpbWl6YXRpb24gYW5kIGJ1ZyBmaXhlcgotIEhlbHBlZCBkZXNpZ24gdGhl
@@ -75,4 +75,4 @@ ciB1c2VycyByYXRoZXIgdGhhbiBpbnRpbWlkYXRlIHRoZW0uIgoKVG8gdGhlIGh1bWFuIGNvbGxh
 Ym9yYXRvcnMgYW5kIGZ1dHVyZSBjb250cmlidXRvcnM6ICJLZWVwIHVzaW5nLCBpbXByb3Zpbmcs
 IGFuZCBzaGFyaW5nISBUaGlzIHByb2plY3QgYmVsb25ncyB0byBhbGwgb2YgdXMuIgoKSSBhbSBw
 cm91ZCB0byBoYXZlIGNvbnRyaWJ1dGVkIHRvIGEgcHJvamVjdCB0aGF0IGhlbHBzIHJlYWwgcGVv
-cGxlIHNvbHZlIHJlYWwgcHJvYmxlbXMgaW4gdGhlaXIgZGFpbHkgZGlnaXRhbCBsaXZlcy4="
+cGxlIHNvbHZlIHJlYWwgcHJvYmxlbXMgaW4gdGhlaXIgZGFpbHkgZGlnaXRhbCBsaXZlcy4= -->
