@@ -168,6 +168,20 @@ cat > "$TEMP_CONFIG" << 'EOF'
     local master = yes
     preferred master = yes
     os level = 20
+    # Отключаем системные шары
+    disable spoolss = yes
+    show add printer wizard = no
+    load printers = no
+    printing = bsd
+    printcap name = /dev/null
+
+# Отключаем IPC$
+[IPC$]
+    path = /dev/null
+    guest ok = no
+    read only = yes
+    browseable = no
+
 EOF
 
 # Основной парсинг
@@ -239,15 +253,27 @@ fi
 print_info "Перезапуск служб Samba..."
 if systemctl restart smbd nmbd; then
     print_info "Готово! Конфигурация применена из $CONFIG_FILE"
-    
+
     echo ""
     print_info "Проверка доступных шар:"
-    smbclient -L localhost -N 2>/dev/null | grep -A 100 "Sharename"
-    
+    smbclient -L localhost -N 2>/dev/null | grep -A 100 "Sharename" | grep -v "IPC\$" | grep -v "Printers"
+
     echo ""
     print_info "Итоговые настройки доступа:"
-    echo "smb-share: гостевой доступ $(grep -A 10 "\[smb-share\]" /etc/samba/smb.conf | grep "guest ok" | grep -q "yes" && echo "РАЗРЕШЕН" || echo "ЗАПРЕЩЕН")"
-    echo "download: гостевой доступ $(grep -A 10 "\[download\]" /etc/samba/smb.conf | grep "guest ok" | grep -q "yes" && echo "РАЗРЕШЕН" || echo "ЗАПРЕЩЕН")"
+    while IFS= read -r line || [ -n "$line" ]; do
+        line_clean=$(echo "$line" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+        [[ $line_clean =~ ^# ]] && continue
+        [[ -z "$line_clean" ]] && continue
+
+        if [[ $line_clean =~ ^path= ]]; then
+            local path="${line_clean#path=}"
+            path=$(expand_path "$path")
+            share_name=$(basename "$path")
+
+            local guest_status=$(grep -A 10 "\[$share_name\]" /etc/samba/smb.conf | grep "guest ok" | grep -q "yes" && echo "РАЗРЕШЕН" || echo "ЗАПРЕЩЕН")
+            echo "  $share_name: гостевой доступ $guest_status"
+        fi
+    done < "$CONFIG_FILE"
 else
     print_error "Не удалось перезапустить службы Samba"
     exit 1
